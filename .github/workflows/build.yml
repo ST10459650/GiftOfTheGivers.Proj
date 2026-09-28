@@ -1,0 +1,39 @@
+name: Build .NET Solution
+
+# Triggers the pipeline automatically when code is pushed to master or main
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout repository code
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 2. Setup .NET SDK Environment
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    # 3. Restore NuGet Dependencies
+    - name: Restore Dependencies
+      run: dotnet restore
+
+    # 4. Build the Visual Studio Solution
+    - name: Build Solution
+      run: dotnet build --configuration Release --no-restore
+
+    # 5. Save and Publish Build Output (Artifacts)
+    - name: Upload Build Output
+      uses: actions/upload-artifact@v4
+      with:
+        name: dotnet-build-artifacts
+        path: |
+          ./**/bin/Release/
