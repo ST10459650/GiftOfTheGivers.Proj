@@ -45,7 +45,7 @@ namespace GiftOfTheGivers.Web.Controllers
             model.DonationId = _donations.Count + 1;
             model.DonationDate = DateTime.Now;
 
-            // Resolve donor identity cleanly with a guaranteed non-null string
+            // Updated logic that resolves donor identity cleanly with a guaranteed non-null string
             string safeDonorName = model.DonorName ?? string.Empty;
 
             if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Donor"))
@@ -66,7 +66,7 @@ namespace GiftOfTheGivers.Web.Controllers
             try
             {
                 var client = _httpClientFactory.CreateClient();
-                string functionUrl = $"http://localhost:7081/api/GenerateTaxCertificate?donorName={Uri.EscapeDataString(safeDonorName)}&amount={model.Amount}";
+                string functionUrl = $"https://giftofthegiversfunction26-hbg5gfhhgvdne3d0.southafricanorth-01.azurewebsites.net/api/GenerateTaxCertificate={Uri.EscapeDataString(safeDonorName)}&amount={model.Amount}";
 
                 HttpResponseMessage response = await client.GetAsync(functionUrl);
 
