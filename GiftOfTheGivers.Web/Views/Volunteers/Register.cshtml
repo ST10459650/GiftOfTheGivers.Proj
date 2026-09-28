@@ -1,0 +1,86 @@
+﻿@model GiftOfTheGivers.Web.Models.VolunteerRegistrationModel
+
+@{
+    ViewData["Title"] = "Volunteer Registration";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 mt-3">
+            <div class="card-header bg-dark text-white py-3">
+                <h3 class="mb-0"><i class="fa-solid fa-user-plus me-2 text-success"></i>Volunteer Registration Interest</h3>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Register" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="FullName" class="form-label fw-bold"></label>
+                            <input asp-for="FullName" class="form-control" placeholder="Jane Doe" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Email" class="form-label fw-bold"></label>
+                            <input asp-for="Email" class="form-control" placeholder="jane@example.com" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="PhoneNumber" class="form-label fw-bold"></label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="+27 82 123 4567" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Province" class="form-label fw-bold"></label>
+                            <select asp-for="Province" class="form-select">
+                                <option value="">Select Province...</option>
+                                <option value="Gauteng">Gauteng</option>
+                                <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                                <option value="Western Cape">Western Cape</option>
+                                <option value="Eastern Cape">Eastern Cape</option>
+                                <option value="Free State">Free State</option>
+                                <option value="Limpopo">Limpopo</option>
+                                <option value="Mpumalanga">Mpumalanga</option>
+                                <option value="North West">North West</option>
+                                <option value="Northern Cape">Northern Cape</option>
+                            </select>
+                            <span asp-validation-for="Province" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PrimarySkill" class="form-label fw-bold"></label>
+                        <select asp-for="PrimarySkill" class="form-select">
+                            <option value="">Select Primary Field of Expertise...</option>
+                            <option value="Medical (Doctor/Nurse/Paramedic)">Medical (Doctor / Nurse / Paramedic)</option>
+                            <option value="Search & Rescue">Search & Rescue</option>
+                            <option value="Logistics & Warehousing">Logistics & Warehousing</option>
+                            <option value="Heavy Vehicle Operator / Driver">Heavy Vehicle Operator / Driver</option>
+                            <option value="Food Preparation & Distribution">Food Preparation & Distribution</option>
+                            <option value="General Field Volunteer">General Field Volunteer</option>
+                        </select>
+                        <span asp-validation-for="PrimarySkill" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Availability" class="form-label fw-bold"></label>
+                        <select asp-for="Availability" class="form-select">
+                            <option value="On-Call Immediate Emergency Response">On-Call Immediate Emergency Response</option>
+                            <option value="Weekends Only">Weekends Only</option>
+                            <option value="Full-Time Deployment">Full-Time Deployment</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100 fw-bold">Submit Interest</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

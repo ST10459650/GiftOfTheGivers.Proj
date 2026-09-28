@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Restoring Dignity, Inspiring Hope";
+}
+
+<!-- Hero Section -->
+<div class="p-5 mb-4 bg-light rounded-3 shadow-sm border text-center">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold text-success">Restoring Dignity, Inspiring Hope</h1>
+        <p class="col-md-8 mx-auto fs-4 text-muted mt-3">
+            Join the largest disaster response non-governmental organisation of African origin on the African continent. Your support brings immediate relief to communities in crisis.
+        </p>
+        <div class="mt-4">
+            <a asp-controller="Donations" asp-action="Create" class="btn btn-success btn-lg px-4 me-md-2 fw-bold">Make a Donation</a>
+            <a asp-controller="Volunteers" asp-action="Register" class="btn btn-outline-secondary btn-lg px-4">Become a Volunteer</a>
+        </div>
+    </div>
+</div>
+
+<!-- Active Crisis Highlights (Dynamic placeholders for the prototype) -->
+<div class="row align-items-md-stretch mt-4">
+    <div class="col-md-6 mb-3">
+        <div class="h-100 p-5 text-white bg-dark rounded-3 shadow">
+            <h2>Current Emergency: KZN Floods</h2>
+            <p>Our search and rescue teams are currently deployed on the ground providing hot meals, blankets, and medical assistance to displaced families.</p>
+            <button class="btn btn-outline-light" type="button">View Project Details</button>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="h-100 p-5 bg-white border rounded-3 shadow-sm">
+            <h2 class="text-success">Volunteer Mobilisation</h2>
+            <p>We urgently require verified volunteers with logistical, medical, and heavy-duty driving experience for the upcoming Cape Winelands fire relief efforts.</p>
+            <button class="btn btn-outline-success" type="button">Apply for Deployment</button>
+        </div>
+    </div>
+</div>

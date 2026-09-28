@@ -1,0 +1,65 @@
+﻿@model GiftOfTheGivers.Web.Models.DonationModel
+
+@{
+    ViewData["Title"] = "Tax Certificate Placeholder";
+}
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a asp-action="Create" class="btn btn-outline-secondary"><i class="fa-solid fa-arrow-left me-1"></i> Make Another Donation</a>
+        <button onclick="window.print()" class="btn btn-primary"><i class="fa-solid fa-print me-1"></i> Print / Save as PDF</button>
+    </div>
+
+    <!-- Tax Certificate Container -->
+    <div class="card shadow border-dark p-4 bg-white" id="taxReceiptPrintArea">
+        <div class="row border-bottom pb-3 mb-4 align-items-center">
+            <div class="col-md-8">
+                <h2 class="text-success fw-bold mb-1"><i class="fa-solid fa-hands-holding-circle me-2"></i>Gift of the Givers Foundation</h2>
+                <p class="mb-0 text-muted">Section 18A Tax-Deductible Receipt (Placeholder Document)</p>
+                <small class="text-muted">PBO Reference No: 930001234 | NPO Registration: 023-847</small>
+            </div>
+            <div class="col-md-4 text-end">
+                <span class="badge bg-success fs-6 p-2">RECEIPT GENERATED</span>
+                <p class="text-muted small mt-2 mb-0"><strong>Ref:</strong> @Model.CertificateNumber</p>
+                <p class="text-muted small"><strong>Date:</strong> @Model.DonationDate.ToString("yyyy-MM-dd HH:mm")</p>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-6">
+                <h6 class="text-uppercase text-muted fw-bold">Donor Details</h6>
+                <p class="fs-5 mb-1"><strong>@Model.DonorName</strong></p>
+                <p class="text-muted mb-0">Email: @(string.IsNullOrEmpty(Model.DonorEmail) ? "N/A (Anonymous)" : Model.DonorEmail)</p>
+            </div>
+            <div class="col-6 text-end">
+                <h6 class="text-uppercase text-muted fw-bold">Donation Overview</h6>
+                <p class="mb-1"><strong>Type:</strong> @Model.Frequency Contribution</p>
+                <p class="mb-0"><strong>Target Project:</strong> @Model.TargetProject</p>
+            </div>
+        </div>
+
+        <div class="table-responsive my-4">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Description</th>
+                        <th>Currency</th>
+                        <th class="text-end">Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Disaster Relief Charitable Contribution</td>
+                        <td>@Model.Currency</td>
+                        <td class="text-end fw-bold">@Model.Amount.ToString("N2")</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="border-top pt-3 mt-4 text-center text-muted small">
+            <p class="mb-1">This certificate confirms that the donation indicated above has been received for bona fide disaster relief activities.</p>
+            <p class="mb-0"><em>Gift of the Givers Foundation - Official Prototype Document</em></p>
+        </div>
+    </div>
+</div>

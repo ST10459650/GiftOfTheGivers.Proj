@@ -1,0 +1,96 @@
+﻿@model GiftOfTheGivers.Web.Models.DonationModel
+
+@{
+    ViewData["Title"] = "Make a Donation";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 mt-3">
+            <div class="card-header bg-success text-white py-3">
+                <h3 class="mb-0"><i class="fa-solid fa-heart me-2"></i>Support Relief Efforts</h3>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- Frequency Selector -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Donation Type</label>
+                        <div class="btn-group w-100" role="group">
+                            <input type="radio" class="btn-check" name="Frequency" id="freqOnce" value="One-Time" checked>
+                            <label class="btn btn-outline-success" for="freqOnce">One-Time Contribution</label>
+
+                            <input type="radio" class="btn-check" name="Frequency" id="freqMonthly" value="Monthly">
+                            <label class="btn btn-outline-success" for="freqMonthly">Monthly Recurring</label>
+                        </div>
+                    </div>
+
+                    <!-- Currency & Amount -->
+                    <div class="row mb-3">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Currency" class="form-label fw-bold"></label>
+                            <select asp-for="Currency" class="form-select">
+                                <option value="ZAR">ZAR (R)</option>
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label asp-for="Amount" class="form-label fw-bold">Amount</label>
+                            <input asp-for="Amount" class="form-control form-control-lg" placeholder="0.00" type="number" step="0.01" />
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Target Project -->
+                    <div class="mb-3">
+                        <label asp-for="TargetProject" class="form-label fw-bold"></label>
+                        <select asp-for="TargetProject" class="form-select">
+                            <option value="General Disaster Relief">General Disaster Relief (Where Most Needed)</option>
+                            <option value="KZN Flood Relief 2026">KZN Flood Relief 2026</option>
+                            <option value="Cape Fire Emergency Aid">Cape Fire Emergency Aid</option>
+                            <option value="Water Sanitation & Borehole Project">Water Sanitation & Borehole Project</option>
+                        </select>
+                    </div>
+
+                    <hr />
+
+                    <!-- Donor Details -->
+                    <h5 class="text-secondary mb-3">Donor Details</h5>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" asp-for="IsAnonymous" id="anonymousCheck" onclick="toggleDonorFields()">
+                        <label class="form-check-label fw-bold" for="anonymousCheck">
+                            @Html.DisplayNameFor(m => m.IsAnonymous)
+                        </label>
+                    </div>
+
+                    <div id="donorDetailsGroup">
+                        <div class="mb-3">
+                            <label asp-for="DonorName" class="form-label"></label>
+                            <input asp-for="DonorName" class="form-control" placeholder="Full Name or Organisation" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="DonorEmail" class="form-label"></label>
+                            <input asp-for="DonorEmail" class="form-control" placeholder="name@example.com" />
+                            <small class="text-muted">A tax certificate will be generated upon submission.</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100 mt-3 fw-bold">Proceed & Generate Tax Receipt</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function toggleDonorFields() {
+            var isAnon = document.getElementById("anonymousCheck").checked;
+            var group = document.getElementById("donorDetailsGroup");
+            group.style.display = isAnon ? "none" : "block";
+        }
+    </script>
+}
